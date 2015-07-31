@@ -17,8 +17,8 @@ public class NotaService {
 			@QueryParam(value = "matricula") Integer pMatricula,
 			@QueryParam(value = "siglaDisciplina") String pSiglaDisciplina,
 			@QueryParam(value = "dataInicial") String pDataInicial,
-			@QueryParam(value = "dataFinal") String pDataFinal) {
-
+			@QueryParam(value = "dataFinal") String pDataFinal) throws Exception {
+		
 		return Nota.obterPorFiltro(pSiglaDisciplina, pDataInicial, pDataFinal);
 	}
 }

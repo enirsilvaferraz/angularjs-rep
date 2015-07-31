@@ -1,6 +1,4 @@
-var app = angular.module('aplicacao', ['ui.bootstrap', 'ui.select']);
-
-app.controller('conultarNotasAlunoController', function ($scope, $http) {
+app.controller('conultarNotasAlunoController', function ($scope, $http, Mensagem, MSG, URLWS) {
 
 	$scope.curso = "Arquitetura de Software Distribuído"
 	
@@ -12,13 +10,15 @@ app.controller('conultarNotasAlunoController', function ($scope, $http) {
     $scope.dataFinal="";
     
     $scope.consultarNotas = function () {
-        
+    	
+    	new Mensagem($scope);  	// Limpar mensagem
+    	
     	$http({
-            url: '../resources/nota/consultar',
+            url: URLWS.CONSULTAR_NOTAS,
             method: 'GET',
             params:	{
             	"matricula": "10",
-            	"siglaDisciplina": $scope.disciplinaSelecionada.selected.sigla,
+            	"siglaDisciplina": angular.isUndefined($scope.disciplinaSelecionada.selected) ? '' : $scope.disciplinaSelecionada.selected.sigla,
             	"dataInicial": $scope.dataInicial,
             	"dataFinal": $scope.dataFinal
             }
@@ -26,14 +26,13 @@ app.controller('conultarNotasAlunoController', function ($scope, $http) {
         .success(function (data) {
         	$scope.notas = data; 
 
-        	$scope.mensagemAlerta = '';
         	if ($scope.notas.length == 0){
-        		$scope.mensagemAlerta = 'Nenuhm registro encontrado!'
+        		new Mensagem($scope).enviar(MSG.W, 'Nenuhm registro encontrado!');
         	}
         	
         })
-        .error(function (){
-        	alert("Erro ao consultar!!!");
+        .error(function (data){
+        	new Mensagem($scope).enviar(MSG.D, data);
         });
 
     };
@@ -43,7 +42,7 @@ app.controller('conultarNotasAlunoController', function ($scope, $http) {
 function consultarDisciplinas ($scope, $http) {
     
 	$http({
-        url: '../resources/disciplina/consultar',
+        url: URLWS.CONSULTAR_DISCIPLINAS,
         method: 'GET',
         params:	{
         	"matricula": "10"
@@ -53,7 +52,7 @@ function consultarDisciplinas ($scope, $http) {
     	$scope.disciplinas = data; 
     })
     .error(function (){
-    	alert("Erro ao consultar!!!");
+    	new Mensagem($scope).enviar(MSG.D, data);
     });
 	
 };
