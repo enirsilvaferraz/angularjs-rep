@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="../../aplicacao/css/estilo.css" />
 
 <script src="../../angular/js/angular.min.js"> </script>
+<script src="../../angular/js/angular-resource.min.js"></script>
 <script src="../../angular/js/ui-bootstrap-tpls-0.13.1.min.js"> </script>
 <script src="../../angular/js/select.min.js"></script>
 <script src="../../bootstrap/js/jquery-1.11.3.min.js"> </script>
@@ -18,6 +19,8 @@
 
 <script src="../../aplicacao/js/utils/app.js"> </script>
 <script src="../../aplicacao/js/utils/mensagemFactory.js"> </script>
+<script src="../../aplicacao/js/services/DisciplinaService.js"> </script>
+<script src="../../aplicacao/js/services/NotaService.js"> </script>
 <script src="../../aplicacao/js/conultarNotasAlunoController.js"> </script>
 
 </head>
@@ -86,10 +89,10 @@
 				<div class="form-group">
 	                <label for="perInicial" class="col-xs-12 col-sm-offset-1 col-sm-2 col-md-offset-1 col-md-2 control-label">Período:</label>
 	                <div class="col-xs-6 col-sm-4 col-md-3">
-	                    <input type="date" class="form-control" id="perInicial" ng-model="dataInicial" />
+	                    <input type="date" class="form-control" id="perInicial" ng-model="notaFiltro.dataInicial" />
 	                </div>
 	                <div class="col-xs-6 col-sm-4 col-md-3">
-	                    <input type="date" class="form-control" id="perFinal" ng-model="dataFinal"/>
+	                    <input type="date" class="form-control" id="perFinal" ng-model="notaFiltro.dataFinal"/>
 	                </div>
 	            </div>
 	

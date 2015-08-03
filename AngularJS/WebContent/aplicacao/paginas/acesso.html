@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html ng-app="aplicacao">
+<html ng-app="AngularJS">
 
 <head>
 <title>Sistema Acadêmico</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet" href="../bootstrap/css/estilo.css" />
+<link rel="stylesheet" href="../../angular/css/select.min.css" />
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../aplicacao/css/estilo.css" />
+
+<script src="../../angular/js/angular.min.js"> </script>
+<script src="../../angular/js/angular-resource.min.js"></script>
+<script src="../../angular/js/ui-bootstrap-tpls-0.13.1.min.js"> </script>
+<script src="../../angular/js/select.min.js"></script>
+<script src="../../bootstrap/js/jquery-1.11.3.min.js"> </script>
+<script src="../../bootstrap/js/bootstrap.min.js"> </script>
+
+<script src="../../aplicacao/js/utils/app.js"> </script>
+<script src="../../aplicacao/js/utils/mensagemFactory.js"> </script>
+<script src="../../aplicacao/js/services/DisciplinaService.js"> </script>
+<script src="../../aplicacao/js/services/NotaService.js"> </script>
+<script src="../../aplicacao/js/loginController.js"> </script>
+
 </head>
 
 <body ng-controller="loginController">
@@ -26,14 +41,14 @@
 							<label for="matricula" class="col-xs-12 col-md-3 control-label">Login:</label>
 							<div class="col-xs-12 col-md-9">
 								<input type="text" class="form-control" id="matricula"
-									placeholder="Matrícula:" value="AS80001" />
+									placeholder="Matrícula:" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="senha" class="col-xs-12 col-md-3 control-label">Senha:</label>
 							<div class="col-xs-12 col-md-9">
 								<input type="password" class="form-control" id="senha"
-									placeholder="Senha" value="12345" />
+									placeholder="Senha" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -47,14 +62,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="../js/angular/angular.min.js"> </script>
-	<script src="../js/angular/ui-bootstrap-tpls-0.13.1.min.js"> </script>
-
-	<script src="../bootstrap/js/jquery-1.11.3.min.js"> </script>
-	<script src="../bootstrap/js/bootstrap.min.js"> </script>
-
-	<script src="../js/aplicacao/loginController.js"> </script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-var app = angular.module('AngularJS', ['ui.bootstrap', 'ui.select'])
+var app = angular.module('AngularJS', ['ui.bootstrap', 'ui.select', 'ngResource'])
 
 .constant("URLWS", {
     "CONSULTAR_NOTAS": "/AngularJS/resources/nota/consultar",
