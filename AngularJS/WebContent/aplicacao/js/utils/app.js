@@ -12,6 +12,14 @@ var app = angular.module('AngularJS', ['ui.bootstrap', 'ngResource', 'ngRoute'])
     "S": "success"
 })
 
+.config(function($locationProvider){
+    $locationProvider.html5Mode({
+        enabled : true,
+        requireBase : false
+    }).hashPrefix('#');
+});
+
+/*
 .config(function($routeProvider, $locationProvider){
     
     $routeProvider
@@ -19,7 +27,7 @@ var app = angular.module('AngularJS', ['ui.bootstrap', 'ngResource', 'ngRoute'])
     	 templateUrl : 'aplicacao/paginas/acesso.html',
          controller : 'loginController'
     })
-    .when('/consultar-nota', {
+    .when('/consultar-nota/:tipoAcesso/:login', {
         templateUrl : 'aplicacao/paginas/area-aluno.html',
         controller : 'conultarNotasAlunoController'
     })
@@ -30,3 +38,4 @@ var app = angular.module('AngularJS', ['ui.bootstrap', 'ngResource', 'ngRoute'])
     $locationProvider.html5Mode(true);
     
 })
+*/

@@ -1,24 +1,37 @@
-app.controller('conultarNotasAlunoController', function ($scope, $http, Mensagem, DisciplinaService, NotaService, MSG) {
+app.controller('conultarNotasAlunoController', function ($scope, $http,  $location, Mensagem, DisciplinaService, NotaService, CursoService, MSG) {
 
-	$scope.curso = "Arquitetura de Software Distribuído"
+	$scope.usuario = $location.search();
+	$scope.notaFiltro = {matricula:$scope.usuario.login, siglaCurso:'', siglaDisciplina:'', dataInicial:'', dataFinal:''};
 	
-	$scope.disciplinaSelecionada = {};
-	$scope.notaFiltro = {matricula:1, siglaDisciplina:'', dataInicial:'', dataFinal:''};
-
-    DisciplinaService.query().$promise.then(
+	CursoService.query({matricula:$scope.usuario.login}).$promise.then(
     	function(data) {
-			$scope.disciplinas = data;
+			$scope.cursos = data;
 	    }, 
 	    function (error){
 	    	new Mensagem($scope).enviar(MSG.D, error.status + " - " + error.statusText);
 	    });
+	
+	$scope.pesquisarDisciplinas = function () {
+		
+		if ($scope.notaFiltro.siglaCurso != ''){
+
+		    DisciplinaService.query({matricula:$scope.usuario.login}).$promise.then(
+		    	function(data) {
+					$scope.disciplinas = data;
+			    }, 
+			    function (error){
+			    	new Mensagem($scope).enviar(MSG.D, error.status + " - " + error.statusText);
+			    });
+	    
+		}
+		
+		else {
+			$scope.disciplinas = {};
+		}
     
+	};
    
     $scope.consultarNotas = function () {
-    	
-    	// $scope.notaFiltro.siglaDisciplina = angular.isUndefined($scope.disciplinaSelecionada.selected) ? '' : $scope.disciplinaSelecionada.selected.sigla;
-    
-    	console.log($scope.notaFiltro.siglaDisciplina);
     	
     	if ($scope.notaFiltro.siglaDisciplina == '' && ($scope.notaFiltro.dataInicial == '' || $scope.notaFiltro.dataInicial == '')){
     		new Mensagem($scope).enviar(MSG.D, "Deve-se fornecer a disciplina ou o período!");
@@ -41,37 +54,4 @@ app.controller('conultarNotasAlunoController', function ($scope, $http, Mensagem
 
     };
     
-})
-
-.directive('convert', function() {
-  
-	return {
-    
-		require: 'ngModel',
-		link: 
-			
-			function(scope, element, attrs, ngModel) {
-      
-				ngModel.$parsers.push(function(val) {
-					
-					var objeto = [];
-					angular.forEach(scope.disciplinas, function(value, key) {
-						if (value.nome == val){
-							this.push(value);
-						}
-					}, objeto);
-					
-					if (objeto.length == 0){
-						return "";						
-					}
-					
-					return objeto[0].sigla;
-				});
-				
-				ngModel.$formatters.push(function(val) {
-					return '' + val;
-				});
-			}
-	};
-});
-	
+});	
