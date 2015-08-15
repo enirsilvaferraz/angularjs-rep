@@ -14,7 +14,8 @@ public class DisciplinaService {
 	@Path("/consultar")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Disciplina[] obterDisciplinasPorAluno(
-			@QueryParam(value = "matricula") Integer pMatricula) {
+			@QueryParam(value = "matricula") String pMatricula,
+			@QueryParam(value = "curso") String pCurso) {
 		return Disciplina.obterTodos();
 	}
 }

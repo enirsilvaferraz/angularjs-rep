@@ -1,3 +1,3 @@
 app.service('DisciplinaService', function($resource) {
-	return $resource("/AngularJS/resources/disciplina/consultar/", {matricula:'17'});
+	return $resource("/AngularJS/resources/disciplina/consultar/", {curso:'', matricula:''});
 });

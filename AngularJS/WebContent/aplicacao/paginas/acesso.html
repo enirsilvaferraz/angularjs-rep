@@ -1,37 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="AngularJS">
 
-<div class="container">
-	<div class="row">
-		<div
-			class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+<head>
 
-			<div class="page-header">
-				<h1>Acesso a Aplica��o</h1>
+<title>Sistema Acadêmico</title>
+<base href="/AngularJS/" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="aplicacao/css/estilo.css" />
+
+<script src="angular/js/angular.min.js"> </script>
+<script src="angular/js/angular-resource.min.js"></script>
+<script src="angular/js/ui-bootstrap-tpls-0.13.1.min.js"> </script>
+<script src="angular/js/angular-route.min.js"> </script>
+<script src="bootstrap/js/jquery-1.11.3.min.js"> </script>
+<script src="bootstrap/js/bootstrap.min.js"> </script>
+
+<script src="aplicacao/js/utils/app.js"> </script>
+<script src="aplicacao/js/utils/mensagemFactory.js"> </script>
+<script src="aplicacao/js/services/DisciplinaService.js"> </script>
+<script src="aplicacao/js/services/NotaService.js"> </script>
+<script src="aplicacao/js/controllers/loginController.js"> </script>
+<script src="aplicacao/js/controllers/conultarNotasAlunoController.js"> </script>
+
+</head>
+<body ng-controller="loginController">
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Área do Aluno</a>
 			</div>
 
-			<div class="jumbotron">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="matricula" class="col-xs-12 col-md-3 control-label">Login:</label>
-						<div class="col-xs-12 col-md-9">
-							<input type="text" class="form-control" id="matricula"
-								placeholder="Matr�cula:" />
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="senha" class="col-xs-12 col-md-3 control-label">Senha:</label>
-						<div class="col-xs-12 col-md-9">
-							<input type="password" class="form-control" id="senha"
-								placeholder="Senha" />
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-xs-12 col-md-offset-3 col-md-9">
-							<a href="/AngularJS/consultar-nota" class="btn btn-primary btn-block">Acessar</a>
-						</div>
-					</div>
-				</form>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/AngularJS/">Logout</a></li>
+				</ul>
 			</div>
+		</div>
+	</nav>
 
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+
+				<div class="page-header">
+					<h1>Acesso a Aplicação</h1>
+				</div>
+
+				<div class="jumbotron">
+
+					<form name="form" ng-submit="acessar()" class="form-horizontal">
+
+						<div class="form-group" ng-class="{ 'has-error': form.tipoUsuario.$dirty && form.tipoUsuario.$error.required }">
+							<label for="tipoUsuario" class="col-xs-12 col-md-4 control-label">Tipo de Usuário:</label>
+							<div class="col-xs-12 col-md-8">
+								<select name="tipoUsuario" id="tipoUsuario" class="form-control" ng-model="tipoUsuario"
+									ng-options="opt for opt in ['Aluno','Coordenador', 'Administrador']" ng-requirid="true">
+									<option></option>
+								</select> <span ng-show="form.tipoUsuario.$dirty && form.tipoUsuario.$error.required" class="help-block">Username
+									is required</span>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{ 'has-error': form.login.$dirty && form.login.$error.required }">
+							<label for="login" class="col-xs-12 col-md-4 control-label">Login:</label>
+							<div class="col-xs-12 col-md-8">
+								<input type="text" class="form-control" name="login" id="login" placeholder="Login:" ng-model="login" required />
+								<span ng-show="form.login.$dirty && form.login.$error.required" class="help-block">O Login é obrigatório</span>
+							</div>
+						</div>
+
+						<div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+							<label for="password" class="col-xs-12 col-md-4 control-label">Password</label>
+							<div class="col-xs-12 col-md-8">
+								<input type="password" name="password" id="password" class="form-control" ng-model="password" required /> <span
+									ng-show="form.password.$dirty && form.password.$error.required" class="help-block">A Senha é obrigatório</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12 col-md-offset-4 col-md-8">
+								<button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary btn-block">Acessar</button>
+							</div>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
 		</div>
 	</div>
-</div>
+
+
+
+</body>
+</html>

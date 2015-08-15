@@ -13,6 +13,7 @@ public class RestApplication extends Application {
 	public RestApplication() {
 		this.singletons.add(new DisciplinaService());
 		this.singletons.add(new NotaService());
+		this.singletons.add(new CursoService());
 	}
 
 	public Set<Class<?>> getClasses() {

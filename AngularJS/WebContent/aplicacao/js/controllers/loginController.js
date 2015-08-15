@@ -1,7 +1,11 @@
-app.controller('loginController', function($scope, $route, $routeParams, $location){
-    
-    $scope.$route = $route;
-    $scope.$location = $location;
-    $scope.$routeParams = $routeParams;
-    
+app.controller('loginController', function($scope, $window){
+	
+	$scope.tipoUsuario ="";
+	$scope.login ="";
+	$scope.password ="";
+	
+	$scope.acessar = function () {
+		$window.location.href = '/AngularJS/aplicacao/paginas/area-aluno.html?tipoUsuario='+$scope.tipoUsuario+'&login='+$scope.login+'&password='+$scope.password;
+    };
+	
 });
