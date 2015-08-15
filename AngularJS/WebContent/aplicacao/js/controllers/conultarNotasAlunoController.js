@@ -1,4 +1,5 @@
-app.controller('conultarNotasAlunoController', function ($scope, $http,  $location, Mensagem, DisciplinaService, NotaService, CursoService, MSG) {
+app.controller('conultarNotasAlunoController', function (
+		$scope, $http,  $location, $window, Mensagem, DisciplinaService, NotaService, CursoService, MSG) {
 
 	$scope.usuario = $location.search();
 	$scope.notaFiltro = {matricula:$scope.usuario.login, siglaCurso:'', siglaDisciplina:'', dataInicial:'', dataFinal:''};
@@ -52,6 +53,10 @@ app.controller('conultarNotasAlunoController', function ($scope, $http,  $locati
 		        });
     	}
 
+    };
+    
+    $scope.logout = function () {
+		$window.location.href = '/AngularJS/aplicacao/paginas/acesso.html';
     };
     
 });	

@@ -5,7 +5,7 @@ app.controller('loginController', function($scope, $window){
 	$scope.password ="";
 	
 	$scope.acessar = function () {
-		$window.location.href = '/AngularJS/aplicacao/paginas/area-aluno.html?tipoUsuario='+$scope.tipoUsuario+'&login='+$scope.login+'&password='+$scope.password;
+		$window.location.href = '/AngularJS/aplicacao/paginas/area-restrita.html?tipoUsuario='+$scope.tipoUsuario+'&login='+$scope.login+'&password='+$scope.password;
     };
 	
 });
