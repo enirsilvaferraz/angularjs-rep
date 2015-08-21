@@ -2,7 +2,7 @@ app.controller('conultarNotasAlunoController', function (
 		$scope, $http,  $location, $window, Mensagem, DisciplinaService, NotaService, CursoService, MSG) {
 
 	$scope.usuario = $location.search();
-	$scope.notaFiltro = {matricula:$scope.usuario.login, siglaCurso:'', siglaDisciplina:'', dataInicial:'', dataFinal:''};
+	$scope.notaFiltro = {matricula:'', tipoUsuario:$scope.usuario.tipoUsuario, siglaCurso:'', siglaDisciplina:'', dataInicial:'', dataFinal:''};
 	
 	CursoService.query({matricula:$scope.usuario.login}).$promise.then(
     	function(data) {
