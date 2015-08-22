@@ -23,6 +23,6 @@
   <url-pattern>/resources/*</url-pattern>
  </servlet-mapping>
  <welcome-file-list>
-  <welcome-file>/aplicacao/paginas/template-root.html</welcome-file>
+  <welcome-file>/aplicacao/paginas/index.html</welcome-file>
  </welcome-file-list>
 </web-app>
